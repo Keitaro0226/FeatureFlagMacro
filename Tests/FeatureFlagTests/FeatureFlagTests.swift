@@ -16,7 +16,7 @@ let testMacros: [String: Macro.Type] = [
 final class FeatureFlagMacroTests: XCTestCase {
     private var cancellables: Set<AnyCancellable> = []
 
-    func test_マクロのコード生成が期待通りである() throws {
+    func test_CodeGenerationOfMacroIsAsExpected() throws {
 #if canImport(FeatureFlagMacros)
         assertMacroExpansion(
         """
