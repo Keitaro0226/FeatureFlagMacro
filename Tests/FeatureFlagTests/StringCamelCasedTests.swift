@@ -2,46 +2,45 @@ import XCTest
 
 final class StringCamelCasedTests: XCTestCase {
 
-    func testCamelCased_withNormalString() {
+    func test_通常の文字列をキャメルケースに変換() {
         let input = "hello world"
         let expectedOutput = "helloWorld"
         XCTAssertEqual(input.camelCased, expectedOutput)
     }
 
-    func testCamelCased_withMultipleSpaces() {
+    func test_複数のスペースを含む文字列をキャメルケースに変換() {
         let input = "hello    world"
         let expectedOutput = "helloWorld"
         XCTAssertEqual(input.camelCased, expectedOutput)
     }
 
-    func testCamelCased_withSpecialCharacters() {
+    func test_特殊文字を含む文字列をキャメルケースに変換() {
         let input = "hello-world_test"
         let expectedOutput = "helloWorldTest"
         XCTAssertEqual(input.camelCased, expectedOutput)
     }
 
-    func testCamelCased_withUppercaseCharacters() {
+    func test_大文字を含む文字列をキャメルケースに変換() {
         let input = "HELLO WORLD"
         let expectedOutput = "helloWorld"
         XCTAssertEqual(input.camelCased, expectedOutput)
     }
 
-    func testCamelCased_withNumbers() {
+    func test_数字を含む文字列をキャメルケースに変換() {
         let input = "hello 123 world"
         let expectedOutput = "hello123World"
         XCTAssertEqual(input.camelCased, expectedOutput)
     }
 
-    func testCamelCased_withEmptyString() {
+    func test_空文字列をキャメルケースに変換() {
         let input = ""
         let expectedOutput = ""
         XCTAssertEqual(input.camelCased, expectedOutput)
     }
 
-    func testCamelCased_withSingleWord() {
+    func test_単語のみの文字列をキャメルケースに変換() {
         let input = "hello"
         let expectedOutput = "hello"
         XCTAssertEqual(input.camelCased, expectedOutput)
     }
 }
-

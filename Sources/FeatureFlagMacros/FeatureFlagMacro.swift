@@ -1,33 +1,47 @@
+import Foundation
 import SwiftCompilerPlugin
 import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 
-/// Implementation of the `stringify` macro, which takes an expression
-/// of any type and produces a tuple containing the value of that expression
-/// and the source code that produced the value. For example
-///
-///     #stringify(x + y)
-///
-///  will expand to
-///
-///     (x + y, "x + y")
-public struct StringifyMacro: ExpressionMacro {
+public struct FeatureFlagMacro: MemberMacro {
     public static func expansion(
-        of node: some FreestandingMacroExpansionSyntax,
+        of node: AttributeSyntax,
+        providingMembersOf declaration: some DeclSyntaxProtocol,
         in context: some MacroExpansionContext
-    ) -> ExprSyntax {
-        guard let argument = node.arguments.first?.expression else {
-            fatalError("compiler bug: the macro does not have any arguments")
+    ) throws -> [DeclSyntax] {
+        guard let enumDecl = declaration.as(EnumDeclSyntax.self) else {
+            throw MacroExpansionErrorMessage("FeatureFlagMacro can only be applied to enums")
         }
 
-        return "(\(argument), \(literal: argument.description))"
+        let enumName = enumDecl.name.text
+
+        let generatedCode = """
+        private static let subject = PassthroughSubject<\(enumName), Never>()
+        
+        public static var publisher: AnyPublisher<\(enumName), Never> {
+            subject.eraseToAnyPublisher()
+        }
+        
+        public static func fetch() -> \(enumName) {
+            let value = UserDefaults.standard.string(forKey: "\(enumName.camelCased)")
+            return \(enumName)(rawValue: value ?? \(enumName).defaultValue.rawValue) ?? .defaultValue
+        }
+        
+        public static func set(_ value: \(enumName)) {
+            UserDefaults.standard.set(value.rawValue, forKey: "\(enumName.camelCased)")
+            subject.send(value)
+        }
+        
+        """
+
+        return [DeclSyntax(stringLiteral: generatedCode)]
     }
 }
 
 @main
 struct FeatureFlagPlugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
-        StringifyMacro.self,
+        FeatureFlagMacro.self,
     ]
 }
