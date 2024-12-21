@@ -1,5 +1,5 @@
 import Combine
-import FeatureFlag
+import FeatureFlagMacro
 import Foundation
 
 @FeatureFlagMacro

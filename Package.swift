@@ -9,8 +9,8 @@ let package = Package(
     platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6), .macCatalyst(.v13)],
     products: [
         .library(
-            name: "FeatureFlag",
-            targets: ["FeatureFlag"]
+            name: "FeatureFlagMacro",
+            targets: ["FeatureFlagMacro"]
         ),
         .executable(
             name: "FeatureFlagMacroClient",
@@ -22,18 +22,18 @@ let package = Package(
     ],
     targets: [
         .macro(
-            name: "FeatureFlagMacros",
+            name: "FeatureFlagMacroPlugin",
             dependencies: [
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
             ]
         ),
-        .target(name: "FeatureFlag", dependencies: ["FeatureFlagMacros"]),
-        .executableTarget(name: "FeatureFlagMacroClient", dependencies: ["FeatureFlag"]),
+        .target(name: "FeatureFlagMacro", dependencies: ["FeatureFlagMacroPlugin"]),
+        .executableTarget(name: "FeatureFlagMacroClient", dependencies: ["FeatureFlagMacro"]),
         .testTarget(
-            name: "FeatureFlagTests",
+            name: "FeatureFlagMacroTests",
             dependencies: [
-                "FeatureFlagMacros",
+                "FeatureFlagMacroPlugin",
                 .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
             ]
         ),

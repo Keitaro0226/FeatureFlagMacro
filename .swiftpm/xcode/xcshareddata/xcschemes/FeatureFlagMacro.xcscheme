@@ -6,6 +6,22 @@
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
       buildArchitectures = "Automatic">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FeatureFlagMacro"
+               BuildableName = "FeatureFlagMacro"
+               BlueprintName = "FeatureFlagMacro"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -18,9 +34,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FeatureFlagTests"
-               BuildableName = "FeatureFlagTests"
-               BlueprintName = "FeatureFlagTests"
+               BlueprintIdentifier = "FeatureFlagMacroTests"
+               BuildableName = "FeatureFlagMacroTests"
+               BlueprintName = "FeatureFlagMacroTests"
                ReferencedContainer = "container:">
             </BuildableReference>
          </TestableReference>
@@ -43,6 +59,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "FeatureFlagMacro"
+            BuildableName = "FeatureFlagMacro"
+            BlueprintName = "FeatureFlagMacro"
+            ReferencedContainer = "container:">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
