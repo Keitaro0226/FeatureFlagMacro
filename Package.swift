@@ -13,8 +13,8 @@ let package = Package(
             targets: ["FeatureFlag"]
         ),
         .executable(
-            name: "FeatureFlagClient",
-            targets: ["FeatureFlagClient"]
+            name: "FeatureFlagMacroClient",
+            targets: ["FeatureFlagMacroClient"]
         ),
     ],
     dependencies: [
@@ -29,7 +29,7 @@ let package = Package(
             ]
         ),
         .target(name: "FeatureFlag", dependencies: ["FeatureFlagMacros"]),
-        .executableTarget(name: "FeatureFlagClient", dependencies: ["FeatureFlag"]),
+        .executableTarget(name: "FeatureFlagMacroClient", dependencies: ["FeatureFlag"]),
         .testTarget(
             name: "FeatureFlagTests",
             dependencies: [
