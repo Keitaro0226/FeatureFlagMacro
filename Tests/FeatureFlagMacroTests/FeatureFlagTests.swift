@@ -5,8 +5,8 @@ import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
 import XCTest
 
-#if canImport(FeatureFlagMacros)
-import FeatureFlagMacros
+#if canImport(FeatureFlagMacro)
+import FeatureFlagMacroPlugin
 
 let testMacros: [String: Macro.Type] = [
     "FeatureFlagMacro": FeatureFlagMacro.self
@@ -17,7 +17,7 @@ final class FeatureFlagMacroTests: XCTestCase {
     private var cancellables: Set<AnyCancellable> = []
 
     func test_CodeGenerationOfMacroIsAsExpected() throws {
-#if canImport(FeatureFlagMacros)
+#if canImport(FeatureFlagMacro)
         assertMacroExpansion(
         """
         @FeatureFlagMacro

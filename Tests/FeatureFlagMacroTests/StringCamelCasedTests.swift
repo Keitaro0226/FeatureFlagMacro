@@ -1,4 +1,5 @@
 import XCTest
+import FeatureFlagMacroPlugin
 
 final class StringCamelCasedTests: XCTestCase {
 
