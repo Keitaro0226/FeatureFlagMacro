@@ -20,7 +20,7 @@ final class FeatureFlagMacroTests: XCTestCase {
 #if canImport(FeatureFlagMacro)
         assertMacroExpansion(
         """
-        @FeatureFlagMacro
+        @FeatureFlag
         @MainActor
         enum FeatureFlag: String, Codable {
             case enabled
