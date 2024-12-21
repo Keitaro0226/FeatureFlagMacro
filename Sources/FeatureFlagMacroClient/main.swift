@@ -2,7 +2,7 @@ import Combine
 import FeatureFlagMacro
 import Foundation
 
-@FeatureFlagMacro
+@FeatureFlag
 @MainActor
 public enum FeatureFlag: String, Codable {
     case enabled

@@ -21,7 +21,7 @@ FeatureFlag is a Swift package that provides an easy and efficient way to manage
 Add the following to your `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/Keitaro0226/FeatureFlagMacro.git", from: "0.1.2")
+.package(url: "https://github.com/Keitaro0226/FeatureFlagMacro.git", from: "0.1.3")
 ```
 
 Or add the repository URL directly to Xcode:
@@ -41,10 +41,10 @@ import FeatureFlagMacro
 
 ### 2. Define a Feature Flag Enum
 
-Annotate your enum with `@FeatureFlagMacro` to automatically generate the necessary boilerplate for fetching, setting, and observing feature flags:
+Annotate your enum with `@FeatureFlag` to automatically generate the necessary boilerplate for fetching, setting, and observing feature flags:
 
 ```swift
-@FeatureFlagMacro
+@FeatureFlag
 @MainActor
 public enum FeatureFlag: String, Codable {
     case enabled
@@ -149,7 +149,7 @@ swift test
 ```swift
 assertMacroExpansion(
     """
-    @FeatureFlagMacro
+    @FeatureFlag
     @MainActor
     enum FeatureFlag: String, Codable {
         case enabled
